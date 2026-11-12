@@ -1,41 +1,26 @@
-# learning
+# Learning libgccjit
 
-A small C project that demonstrates runtime code generation with GCC's
-`libgccjit`.
+Small C examples for learning GCC's `libgccjit`.
 
 ## Requirements
 
-- GCC with `libgccjit` development files (header and library)
-- CMake 3.20 or newer
-- Ninja or Make
-- `pkg-config` is optional; CMake can also locate the header and library directly
+- GCC
+- The `libgccjit` development package (header and library)
+- Bash
 
-Install the `libgccjit` development package using your operating system's
-package manager. Package names differ by distribution; common names include
-`libgccjit-XX-dev` on Debian/Ubuntu and `libgccjit-devel` on Fedora. You need
-the development package, not only the runtime library.
+## Build and run an example
 
-## Build and run
-
-From the project root:
+Run the selector and choose a `.c` file:
 
 ```sh
-cmake -S . -B build -DCMAKE_BUILD_TYPE=Release
-cmake --build build --parallel
-./build/learning-libgccjit
+./run.sh
 ```
 
-On Windows, run the executable as `build\Release\learning-libgccjit.exe` with a
-multi-configuration generator such as Visual Studio. `libgccjit` availability
-depends on the compiler toolchain and installation.
-
-## Install locally
+Or select one by its filename, with or without the `.c` extension:
 
 ```sh
-cmake --install build --prefix "$HOME/.local"
+./run.sh hello-world
 ```
 
-The executable is installed under `~/.local/bin`. Ensure that directory is on
-your `PATH`. The target platform must also be able to find the matching
-`libgccjit` runtime library when the executable starts.
-
+The script compiles the selected source into `build/` and runs it. Add new C
+examples to the project root; the selector discovers them automatically.
